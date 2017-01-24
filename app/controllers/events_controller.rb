@@ -1,3 +1,3 @@
 class EventsController < ApplicationController
-
-end  
+  before_action :authenticate_user!
+end
