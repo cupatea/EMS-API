@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_with_token!
   before_action :set_comment, only: [:update, :destroy]
   respond_to :json
 
