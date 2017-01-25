@@ -1,25 +1,18 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_comment, only: [:show, :update, :destroy]
+  before_action :set_comment, only: [:update, :destroy]
+  respond_to :json
 
   # GET /comments
   def index
     if comments_permitted_to_show?
-      comments = Comment.where event_id: params[:event_id]
-      render json: comments
+      @comments = Comment.where event_id: params[:event_id]
+      respond_with @comments
     else
-      render json: { error: "Access denied"}
+      render json: { error: "Access denied" }
     end
   end
 
-  # GET /comments/1
-  def show
-    if comment_permitted_to_edit_or_delete?
-      render json: @comment
-    else
-      render json: { error: "Access denied"}
-    end
-  end
   # POST /comments
   def create
     comment = current_user.comments.create permitted_comment_params
@@ -48,9 +41,9 @@ class CommentsController < ApplicationController
   def destroy
     if comment_permitted_to_edit_or_delete?
       @comment.destroy
-      render json: { data: {message: "Successfuly deleted"} }
+      render json: { status: "Success" }
     else
-      render json: { error: "Access denied"}
+      render json: { error: "Access denied" }
     end
   end
 
@@ -71,7 +64,7 @@ class CommentsController < ApplicationController
     def comments_permitted_to_show?
       current_user.events.map(&:id).include? params[:event_id].to_i
     end
-    # Check whether user is a creator of the comment
+     #Check whether user is a creator of the comment
     def comment_permitted_to_edit_or_delete?
       current_user.id == @comment.user_id
     end
