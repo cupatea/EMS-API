@@ -8,6 +8,7 @@ class User < ApplicationRecord
   before_create :generate_authentication_token!
   has_and_belongs_to_many :events
   has_many :comments
+
   def generate_authentication_token!
     begin
       self.auth_token = Devise.friendly_token
