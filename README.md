@@ -192,47 +192,47 @@ $ rails server
       `curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -H "Postman-Token:517ec428-f37b-3fa1-bd87-d7128a1dbe9d" -d '{	"name" : "Some fantastic event2", "time" : "2017-01-28T17:18:51.367Z", "place" :"Some place666", "purpose" :"Some purpose","attachment":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARgAAAEpCAIAAADHyqrTAAAkzUlEQVR..."}' "http://localhost:3000/events/`
 
     **Create Event**
-      ----
-        Create an event with details and attachment.
+    ----
+    Create an event with details and attachment.
 
-      * **URL**
+* **URL**
 
-        /events
+/events
 
-      * **Method:**
+* **Method:**
 
-        `POST`
+`POST`
 
-      *  **URL Params**
+*  **URL Params**
 
-       **Required:**
+**Required:**
 
-       `id=[integer]`
-       `auth_token=[string]`
+`id=[integer]`
+`auth_token=[string]`
 
-      * **Data Params**
+* **Data Params**
 
-      `{"name" : "Some fantastic event2", "time" : "2017-01-28T17:18:51.367Z", "place" :"Some place666", "purpose" :"Some purpose",
-    "attachment":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARgAAAEpCAIAAADHyqrTAAAkzUlEQVR..."}`
+`{"name" : "Some fantastic event2", "time" : "2017-01-28T17:18:51.367Z", "place" :"Some place666", "purpose" :"Some purpose",
+"attachment":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARgAAAEpCAIAAADHyqrTAAAkzUlEQVR..."}`
 
-      * **Success Response:**
+* **Success Response:**
 
-        * **Code:** 200 <br />
-          **Content:** `{"id": 6,"name": "Some fantastic event2","time": "2017-01-28T17:18:51.367Z","place": "Some place666", "purpose": "Some purpose", "created_at": "2017-01-26T17:18:43.361Z", updated_at": "2017-01-26T17:18:43.375Z","owner_id": 1,"attachment": {  "url": "/uploads/event/attachment/6/event_file-1485451123.png"}}`
+* **Code:** 200 <br />
+**Content:** `{"id": 6,"name": "Some fantastic event2","time": "2017-01-28T17:18:51.367Z","place": "Some place666", "purpose": "Some purpose", "created_at": "2017-01-26T17:18:43.361Z", updated_at": "2017-01-26T17:18:43.375Z","owner_id": 1,"attachment": {  "url": "/uploads/event/attachment/6/event_file-1485451123.png"}}`
 
-      * **Error Response:**
+* **Error Response:**
 
-        * **Code:** 404 NOT FOUND <br />
-          **Content:** `{ error : "Not found" }`
+* **Code:** 404 NOT FOUND <br />
+**Content:** `{ error : "Not found" }`
 
-      * **Sample Call:**
+* **Sample Call:**
 
-  `curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -H "Postman-Token:517ec428-f37b-3fa1-bd87-d7128a1dbe9d" -d '{	"name" : "Some fantastic event2", "time" : "2017-01-28T17:18:51.367Z", "place" :"Some place666", "purpose" :"Some purpose","attachment":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARgAAAEpCAIAAADHyqrTAAAkzUlEQVR..."}'"http://localhost:3000/events/"`
+`curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -H "Postman-Token:517ec428-f37b-3fa1-bd87-d7128a1dbe9d" -d '{	"name" : "Some fantastic event2", "time" : "2017-01-28T17:18:51.367Z", "place" :"Some place666", "purpose" :"Some purpose","attachment":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARgAAAEpCAIAAADHyqrTAAAkzUlEQVR..."}'"http://localhost:3000/events/"`
 
 **Edit Event**
-   ----
+----
 
-      Edit event details or attachment.
+Edit event details or attachment.
 
 * **URL**
 
