@@ -1,7 +1,7 @@
 module Authenticable
   # Devise methods overwrites
   def current_user
-    @current_user ||= User.find_by(auth_token: params[:user][:auth_token])
+    @current_user ||= User.find_by(auth_token: params[:auth_token])
     if @current_user
       @current_user
     else
