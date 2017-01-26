@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
 
   # GET /comments
   def index
-    if comments_permitted_to_show?
+    if event_permitted_or_exist?
       @comments = Comment.where event_id: params[:event_id]
       respond_with @comments
     else
@@ -15,13 +15,17 @@ class CommentsController < ApplicationController
 
   # POST /comments
   def create
-    comment = current_user.comments.create permitted_comment_params
-    if comment
-      comment.update event_id: params[:event_id]
-      render json: comment
+    if event_permitted_or_exist?
+      comment = current_user.comments.create permitted_comment_params
+      if comment
+        comment.update event_id: params[:event_id]
+        render json: comment
+      else
+        render json: { error: comment.errors }
+      end
     else
-      render json: { error: comment.errors }
-    end
+      render json: { error: "Access denied" }
+    end  
   end
 
   # PATCH/PUT /comments/1
@@ -56,12 +60,13 @@ class CommentsController < ApplicationController
       end
     end
 
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def permitted_comment_params
       params.require(:comment).permit(:content)
     end
     # Check whether user is event's participant
-    def comments_permitted_to_show?
+    def event_permitted_or_exist?
       current_user.events.map(&:id).include? params[:event_id].to_i
     end
      #Check whether user is a creator of the comment

@@ -1,12 +1,7 @@
 module Authenticable
   # Devise methods overwrites
   def current_user
-    @current_user ||= User.find_by(auth_token: params[:user][:auth_token])
-    if @current_user
-      @current_user
-    else
-      render json: { status: "Not found" }
-    end
+    @current_user ||= User.find_by_auth_token(params[:auth_token])
   end
 
   def authenticate_with_token!
