@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
       user.save
       render json: { status: "Successfuly loged out"}
     else
-      render json: { status: "Not found"}
+      render json: { status: "Not found"}, status: 404
     end
   end
 end
