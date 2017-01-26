@@ -7,7 +7,7 @@ This is the test assignment application
 To get started with the app, clone the repo and then install the needed gems:
 
 ```
-$ bundle install --without production
+$ bundle install
 ```
 
 Next, migrate the database:
@@ -30,17 +30,17 @@ $ rails server
 
 **EMS-API**
 ----
-  <_App is able to sign up user, sign in and sign out. User is able to create, update, and delete events and attach file to them. Also there is an ability to create comments and invite other users to event. _>
+  App is able to sign up user, sign in and sign out. User is able to create, update, and delete events and attach file to them. Also there is an ability to create comments and invite other users to event.
 
 * **Method:**
 
-  <_The request type_>
+  The request type
 
   `GET` | `POST` | `DELETE` | `PUT` | `PATCH`
 
 *  **URL Params**
 
-   <_As to have an access to all the resources of app (except registration and sign in) you must to add auth_token, which is provided after registration or sign in. As for optional parameters for index action of event, you can use interval as to filter events by date, the value is integer and means count of days form current time._>
+   As to have an access to all the resources of app (except registration and sign in) you must to add auth_token, which is provided after registration or sign in. As for optional parameters for index action of event, you can use interval as to filter events by date, the value is integer and means count of days form current time.
 
    **Required:**
 
@@ -52,31 +52,18 @@ $ rails server
 
 * **Data Params**
 
-  <_If you use post request you should warp all the needed parameters by resource's name ._>
+  If you use post request you should warp all the needed parameters by resource's name .
 
 * **Success Response:**
 
-  <_For example, as successful response you'll get request 200, see below!_>
+  For example, as successful response you'll get request 200, see below!
 
   * **Code:** 200 <br />
-    **Content:** `{
-                    "id": 4,
-                    "name": "Some fantastic event",
-                    "time": "2017-01-28T17:18:51.367Z",
-                    "place": "Some place",
-                    "purpose": "Some purpose",
-                    "created_at": "2017-01-26T15:41:15.858Z",
-                    "updated_at": "2017-01-26T15:41:15.872Z",
-                    "owner_id": 1,
-                    "attachment": {
-                      "url": null
-  }}
-
-}`
+    **Content:** `{"id": 4,"name": "Some fantastic event","time": "2017-01-28T17:18:51.367Z","place": "Some place","purpose": "Some purpose","created_at": "2017-01-26T15:41:15.858Z","updated_at": "2017-01-26T15:41:15.872Z","owner_id": 1,"attachment": {"url": null}}}`
 
 * **Error Response:**
 
-  <_Most endpoints will have many ways they can fail. From unauthorized access, to wrongful parameters etc. All of those are listed below._>
+  Most endpoints will have many ways they can fail. From unauthorized access, to wrongful parameters etc. All of those are listed below.
 
   * **Code:** 403 Forbidden <br />
     **Content:** `{ error: "Access denied" }`
@@ -88,13 +75,7 @@ $ rails server
 
 * **Sample Call:**
 
-  <_Pcurl -X PUT -H "Content-Type: application/json" -H "Cache-Control: no-cache" -H "Postman-Token: 28188d41-d102-aca3-0617-83d86258c97f" -d '{
-	"comment":
-	{
-		"content":"Comment has been edited!"
-	}
-
-}' "http://localhost:3000/events/25/comments/2?auth_token=JFxBWnJcuTzPs8sok2iL" ._>
+  `curl -X PUT -H "Content-Type: application/json" -H "Cache-Control: no-cache" -H "Postman-Token: 28188d41-d102-aca3-0617-83d86258c97f" -d '{"comment":{"content":"Comment has been edited!"}}'"http://localhost:3000/events/25/comments/2?auth_token=JFxBWnJcuTzPs8sok2iL"`
 
 **Register User**
 ----
@@ -129,13 +110,8 @@ $ rails server
 
 * **Sample Call:**
 
-  ```curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -H "Postman-Token: 4f7031fb-87b5-47f9-5972-d3d608674024" -d '{	"user":{
-		"email" : "some_new@email.com",
-		"password" : "qwqwqw",
-		"password_confirmation" : "qwqwqw"
-	}
-}	' "http://localhost:3000/users"
-  ```
+  `curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -H"Postman-Token: 4f7031fb-87b5-47f9-5972-d3d608674024" -d '{"user":{"email":"some_new@email.com","password" : "qwqwqw","password_confirmation" : "qwqwqw"}}'"http://localhost:3000/users"'`
+
   **Log Out User**
   ----
   * **URL**
@@ -196,7 +172,6 @@ $ rails server
 
      `interval=[integer]`
 
-
     * **Data Params**
 
     `{"name" : "Some fantastic event2", "time" : "2017-01-28T17:18:51.367Z", "place" :"Some place666", "purpose" :"Some purpose",
@@ -214,10 +189,9 @@ $ rails server
 
     * **Sample Call:**
 
-      ```curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -H "Postman-Token:517ec428-f37b-3fa1-bd87-d7128a1dbe9d" -d '{	"name" : "Some fantastic event2", "time" : "2017-01-28T17:18:51.367Z", "place" :"Some place666", "purpose" :"Some purpose","attachment":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARgAAAEpCAIAAADHyqrTAAAkzUlEQVR..."
-}' "http://localhost:3000/events/"
-      ```
-      **Create Event**
+      `curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -H "Postman-Token:517ec428-f37b-3fa1-bd87-d7128a1dbe9d" -d '{	"name" : "Some fantastic event2", "time" : "2017-01-28T17:18:51.367Z", "place" :"Some place666", "purpose" :"Some purpose","attachment":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARgAAAEpCAIAAADHyqrTAAAkzUlEQVR..."}' "http://localhost:3000/events/`
+
+    **Create Event**
       ----
         Create an event with details and attachment.
 
@@ -253,187 +227,186 @@ $ rails server
 
       * **Sample Call:**
 
-        ```curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -H "Postman-Token:517ec428-f37b-3fa1-bd87-d7128a1dbe9d" -d '{	"name" : "Some fantastic event2", "time" : "2017-01-28T17:18:51.367Z", "place" :"Some place666", "purpose" :"Some purpose","attachment":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARgAAAEpCAIAAADHyqrTAAAkzUlEQVR..."
-    }' "http://localhost:3000/events/"
-    ```
-    **Edit Event**
-    ----
+  `curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -H "Postman-Token:517ec428-f37b-3fa1-bd87-d7128a1dbe9d" -d '{	"name" : "Some fantastic event2", "time" : "2017-01-28T17:18:51.367Z", "place" :"Some place666", "purpose" :"Some purpose","attachment":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARgAAAEpCAIAAADHyqrTAAAkzUlEQVR..."}'"http://localhost:3000/events/"`
+
+**Edit Event**
+   ----
+
       Edit event details or attachment.
 
-    * **URL**
+* **URL**
 
-      /events/:id/edit
+/events/:id/edit
 
-    * **Method:**
+* **Method:**
 
-      `PUT` | `PATCH`
+`PUT` | `PATCH`
 
-    *  **URL Params**
+*  **URL Params**
 
-     **Required:**
+**Required:**
 
-     `id=[integer]`
-     `auth_token=[string]`
+`id=[integer]`
+`auth_token=[string]`
 
-    * **Data Params**
+* **Data Params**
 
-    `{"name" : "Some new name", "time" : "2018-01-28T17:18:51.367Z", "place" :"Some new place", "purpose" :"Some new purpose"}`
+`{"name" : "Some new name", "time" : "2018-01-28T17:18:51.367Z", "place" :"Some new place", "purpose" :"Some new purpose"}`
 
-    * **Success Response:**
+* **Success Response:**
 
-      * **Code:** 200 <br />
-        **Content:** `{"id": 6,"name": "SSome new name","time": "2018-01-28T17:18:51.367Z","place": "Some new place", "purpose": "ome new purpose", "created_at": "2017-01-26T17:18:43.361Z", updated_at": "2017-01-26T17:18:43.375Z","owner_id": 1,"attachment": {  "url": "/uploads/event/attachment/6/event_file-1485451123.png"}}`
+* **Code:** 200 <br />
+**Content:** `{"id": 6,"name": "SSome new name","time": "2018-01-28T17:18:51.367Z","place": "Some new place", "purpose": "ome new purpose", "created_at": "2017-01-26T17:18:43.361Z", updated_at": "2017-01-26T17:18:43.375Z","owner_id": 1,"attachment": {  "url": "/uploads/event/attachment/6/event_file-1485451123.png"}}`
 
-    * **Error Response:**
+* **Error Response:**
 
-      * **Code:** 404 NOT FOUND <br />
-        **Content:** `{ error : "Not found" }`
+* **Code:** 404 NOT FOUND <br />
+**Content:** `{ error : "Not found" }`
 
-    * **Sample Call:**
+* **Sample Call:**
 
-      ```curl -X PUT -H "Content-Type: application/json" -H "Cache-Control: no-cache" -H "Postman-Token: 97da1dd3-bc58-ea02-afba-cbfe9f737ab1" -d '{"name" : "Some new name", "time" : "2018-01-28T17:18:51.367Z", "place" :"Some new place", "purpose" :"Some new purpose"}' "http://localhost:3000/events?auth_token=Z5GJNoYLEoyA2nn-qyRM"
-      ```
+`curl -X PUT -H "Content-Type: application/json" -H "Cache-Control: no-cache" -H "Postman-Token: 97da1dd3-bc58-ea02-afba-cbfe9f737ab1" -d '{"name" : "Some new name", "time" : "2018-01-28T17:18:51.367Z", "place" :"Some new place", "purpose" :"Some new purpose"}' "http://localhost:3000/events?auth_token=Z5GJNoYLEoyA2nn-qyRM"`
 
-      **Delete Event**
-      ----
-        Delete event.
+**Delete Event**
+----
+Delete event.
 
-      * **URL**
+* **URL**
 
-        /events/:id
+/events/:id
 
-      * **Method:**
+* **Method:**
 
-        `DELETE`
+`DELETE`
 
-      *  **URL Params**
+*  **URL Params**
 
-       **Required:**
+**Required:**
 
-       `auth_token=[string]`
+`auth_token=[string]`
 
-      * **Data Params**
+* **Data Params**
 
 
-      * **Success Response:**
+* **Success Response:**
 
-        * **Code:** 200 <br />
-          **Content:** `{{"data": {"message": "Successfully deleted"}
+* **Code:** 200 <br />
+**Content:** `{{"data": {"message": "Successfully deleted"}
 
-      * **Error Response:**
+* **Error Response:**
 
-        * **Code:** 404 NOT FOUND <br />
-          **Content:** `{ error : "Not found" }`
+* **Code:** 404 NOT FOUND <br />
+**Content:** `{ error : "Not found" }`
 
-      * **Sample Call:**
+* **Sample Call:**
 
-        ```curl -X DELETE -H "Content-Type: application/json" -H "Cache-Control: no-cache" -H "Postman-Token: 8d9829fb-576a-f587-631f-61479f66bbc7" -d '' "http://localhost:3000/events/7?auth_token=Kb5QL6y4dx78w2TicdbD"
-        ```  
-        **Index Comments**
-        ----
-          Returns comments of the event.
+`curl -X DELETE -H "Content-Type: application/json" -H "Cache-Control: no-cache" -H "Postman-Token: 8d9829fb-576a-f587-631f-61479f66bbc7" -d '' "http://localhost:3000/events/7?auth_token=Kb5QL6y4dx78w2TicdbD"`
 
-        * **URL**
+**Index Comments**
+----
+Returns comments of the event.
 
-          /events/:event_id/comments
+* **URL**
 
-        * **Method:**
+/events/:event_id/comments
 
-          `GET`
+* **Method:**
 
-        *  **URL Params**
+`GET`
 
-         **Required:**
-         `event_id=[integer]`
-         `auth_token=[string]`
+*  **URL Params**
 
-          **Create Comment**
-          ----
-            Create comment.
+**Required:**
+`event_id=[integer]`
+`auth_token=[string]`
 
-          * **URL**
+**Create Comment**
+----
+Create comment.
 
-            /events/:event_id/comments
+* **URL**
 
-          * **Method:**
+/events/:event_id/comments
 
-            `POST`
+* **Method:**
 
-          *  **URL Params**
+`POST`
 
-           **Required:**
+*  **URL Params**
 
-           `event_id=[integer]`
-           `auth_token=[string]`
+**Required:**
 
-          * **Data Params**
+`event_id=[integer]`
+`auth_token=[string]`
 
-          `{"comment": {" content": "Content of the comment}}`
+* **Data Params**
 
-        **Edit Comment**
-        ----
-          Edit comment.
+`{"comment": {" content": "Content of the comment}}`
 
-        * **URL**
+**Edit Comment**
+----
+Edit comment.
 
-          /events/:event_id/comments/:id
+* **URL**
 
-        * **Method:**
+/events/:event_id/comments/:id
 
-          `PUT` | `PATCH`
+* **Method:**
 
-        *  **URL Params**
+`PUT` | `PATCH`
 
-         **Required:**
+*  **URL Params**
 
-         `id=[integer]`
-         `event_id=[integer]`
-         `auth_token=[string]`
+**Required:**
 
-        * **Data Params**
+`id=[integer]`
+`event_id=[integer]`
+`auth_token=[string]`
 
-        `{"comment": {" content": "New content of the comment}}`
+* **Data Params**
 
-          **Delete Comment**
-          ----
-            Delete comment.
+`{"comment": {" content": "New content of the comment}}`
 
-          * **URL**
+**Delete Comment**
+----
+Delete comment.
 
-            /events/:event_id/comments/:id
+* **URL**
 
-          * **Method:**
+/events/:event_id/comments/:id
 
-            `DELETE`
+* **Method:**
 
-          *  **URL Params**
+`DELETE`
 
-           **Required:**
+*  **URL Params**
 
-           `id=[integer]`
-           `event_id=[integer]`
-           `auth_token=[string]`
+**Required:**
 
-          * **Data Params**
+`id=[integer]`
+`event_id=[integer]`
+`auth_token=[string]`
 
-          **Create Invitation**
-          ----
-            Invite other user to your event.
 
-          * **URL**
 
-            /invites
+**Create Invitation**
+----
+Invite other user to your event.
 
-          * **Method:**
+* **URL**
 
-            `POST`
+/invites
 
-          *  **URL Params**
+* **Method:**
 
-           **Required:**
+`POST`
 
-           `auth_token=[string]`
+*  **URL Params**
 
-          * **Data Params**
+**Required:**
 
-          `{"invite":{ "invitee_id":"3", "event_id": "1" }`
+`auth_token=[string]`
+
+* **Data Params**
+
+`{"invite":{ "invitee_id":"3", "event_id": "1" }`
