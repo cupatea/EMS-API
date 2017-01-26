@@ -7,5 +7,4 @@ Rails.application.routes.draw do
   end
 
   resources :invites, only: :create
-  resource :feeds, only: :show
 end
